@@ -89,7 +89,7 @@ export const reinforcement = async (req: any, res: any) => {
     }
 
     // Transaction pour mettre à jour le board et ajouter une ligne à l'historique
-    const updatedGameSession = await prisma.$transaction(async (tx) => {
+    const updatedGameSession = await prisma.$transaction(async (tx: any) => {
       // Mettre à jour la cellule
       const updatedBoard = board.map((cell: any) =>
         cell.id === cellId
@@ -234,7 +234,7 @@ export const move = async (req: any, res: any) => {
     }
 
     // Mise à jour de la GameSession et ajout à l'historique dans une transaction
-    const updatedGameSession = await prisma.$transaction(async (tx) => {
+    const updatedGameSession = await prisma.$transaction(async (tx: any) => {
       await tx.gameSession.update({
         where: { id: gameSession.id },
         data: { board: updatedBoard },
